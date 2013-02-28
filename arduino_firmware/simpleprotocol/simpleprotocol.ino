@@ -38,6 +38,11 @@ void setup()
 
 void loop()
 {
+  value = getDistance();
+  if(value <= 8)
+  {
+    Stop();
+  }
   getSerial();
   switch(serialdata)
   {
@@ -95,6 +100,7 @@ void loop()
           break;
        } 
      }
+     break;
      case 4: // get sensor info
      {
         //movement or head servo;
@@ -102,17 +108,14 @@ void loop()
        switch(serialdata)
        {
         case 1: //sonar
-          switch(urm.requestMeasurementOrTimeout(DISTANCE, value))
-          {
-           case 1: 
             Serial.print("/4/1/");
             Serial.print(value);
-           Serial.print("/"); 
+            Serial.print("/"); 
             break;
-          }
-          break; 
+ 
        } 
      }
+     break;
    }
   }
 }
@@ -173,6 +176,23 @@ void movement()
 
   }
            
+}
+
+void Stop()
+{
+  left.write(serialdata + 90);
+  right.write(serialdata + 90);
+}
+int getDistance()
+{
+  int val;
+   switch(urm.requestMeasurementOrTimeout(DISTANCE, value))
+          {
+           case 1: 
+            return val;
+            break;
+          }
+   return 0;  
 }
 
 void returnMessage(int branch, int section, int data)

@@ -10,6 +10,8 @@ std_msgs::UInt16 movement;
 int distance_to_obj_main;
 int main_dis_treshold = 10; 
 
+
+
 ros::Publisher head_turn_pub;
 ros::Publisher movement_pub;
 
@@ -37,4 +39,10 @@ void move(int direction)
 {
 	movement.data = direction;
 	movement_pub.publish(movement);
+}
+
+
+void protocolHandle(int protocol)
+{
+	
 }
