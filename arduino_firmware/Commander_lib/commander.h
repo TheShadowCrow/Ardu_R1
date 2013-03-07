@@ -36,7 +36,7 @@ Lesser General Public License for more details.
 // Command-Struct:
 typedef struct {
   String execCommand;                  // command for execution
-  void (*callback)(String);            // callback function 
+  void (*callback)(String, int);            // callback function 
   uint8_t isActive   :1;               // true if this command is enabled 
 } Command_t;
 
@@ -48,7 +48,7 @@ class Commander {
     
     // methods:
     void addCommand(Command_t command);
-    void processCommand(String command);
+    void processCommand(String command, int data);
   private:
     // properties
     Command_t commands[MAX_COMMANDS];

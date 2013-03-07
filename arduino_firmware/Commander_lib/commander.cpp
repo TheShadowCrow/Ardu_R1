@@ -48,7 +48,7 @@ void Commander::addCommand(Command_t command)
 }
 
 // process command method:
-void Commander::processCommand(String command)
+void Commander::processCommand(String command, int data)
 {
   for (int i = 0; i < MAX_COMMANDS; i++) 
   {
