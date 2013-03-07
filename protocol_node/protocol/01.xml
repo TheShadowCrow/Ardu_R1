@@ -1,0 +1,37 @@
+<protocol revision="1" name="guard">
+	<node name="arducore">
+		<enabled>true</enabled>
+		<required>true</required>
+		<params>
+			<system> 
+				<!-- to add new devices or change critical settings 
+				<add type="devicenode" >headsonar</add>
+				<remove type="devicenode">headsonar</remove> -->
+			</system>
+			<movement direction="0"></movement>
+			<head min="0" max="180" action="sweep"></head>
+			<sonar interval="1.0" interupt="change" buffer="1.5" action="scan">
+				<interupt>
+					<command action="send"> <!-- send a command "message" --> 
+						<type label="message">warning</type>
+						<data>
+							detection of abnormality in my region 
+							at: <time action="register"/><!-- tijdsregistratie --> 
+						</data>
+					</command>
+					<command action="get"> <!-- waits till he recieves a command message of the given type and data -->
+						<type label="action">
+							say
+						</type>
+						<data>
+							* <!-- anything --> 
+						</data>
+					</command>
+					<command action="do"> <!-- just do it! --> 
+					
+					</command> 
+				</interupt>
+			</sonar>
+		</params>
+	</node>
+</protocol>
